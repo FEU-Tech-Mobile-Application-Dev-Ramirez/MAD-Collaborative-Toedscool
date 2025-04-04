@@ -21,3 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "MAD-Collaborative"
 include(":app")
+include(":newbuild.gradle.kts")
+project(":newbuild.gradle.kts").projectDir = File(rootDir, "build.gradle.kts")
