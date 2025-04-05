@@ -13,6 +13,9 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import com.example.mad_collaborative.ui.theme.MADCollaborativeTheme
 import com.google.firebase.database.FirebaseDatabase
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : ComponentActivity() {
     private lateinit var database: FirebaseDatabase
@@ -41,5 +44,31 @@ class MainActivity : ComponentActivity() {
                 )
             }
         }
+
+        // Call the fetchData function to make the API call
+        fetchData()
+    }
+
+    private fun fetchData() {
+        val apiService = RetrofitInstance.retrofit.create(ApiService::class.java)
+        val call = apiService.getData("123")
+
+        call.enqueue(object : Callback<MyDataModel> {
+            override fun onResponse(call: Call<MyDataModel>, response: Response<MyDataModel>) {
+                if (response.isSuccessful) {
+                    val data = response.body()
+                    // Handle the data
+                    println("Data: $data")
+                } else {
+                    // Handle the error response
+                    println("Error: ${response.errorBody()}")
+                }
+            }
+
+            override fun onFailure(call: Call<MyDataModel>, t: Throwable) {
+                // Handle the failure
+                println("Failure: ${t.message}")
+            }
+        })
     }
 }

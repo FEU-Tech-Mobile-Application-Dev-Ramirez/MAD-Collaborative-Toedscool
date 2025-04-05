@@ -86,5 +86,14 @@ dependencies {
     implementation (libs.androidx.foundation)
     implementation (libs.androidx.material)
     implementation (libs.ui.graphics)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation (libs.androidx.activity.compose.v1101)
+    implementation (libs.material3)
+    implementation (libs.ui.tooling.preview)
+    implementation (libs.androidx.lifecycle.runtime.ktx)
+    implementation (libs.androidx.runtime.livedata)
+    implementation (libs.androidx.foundation.v140)
+    implementation (libs.androidx.material)
 
 }
